@@ -2,6 +2,7 @@ package com.github.bartoszpogoda.springproplayground.ioccontainer.garrage;
 
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import com.github.bartoszpogoda.springproplayground.ioccontainer.tools.Screwdriver;
 import com.github.bartoszpogoda.springproplayground.ioccontainer.tools.ToolType;
@@ -10,7 +11,7 @@ import com.github.bartoszpogoda.springproplayground.ioccontainer.tools.Toolbox;
 public class Mechanic implements BeanNameAware {
 
 	private String name;
-
+	
 	private Toolbox toolbox;
 
 	public String getIntroductionMessage() {
@@ -23,6 +24,10 @@ public class Mechanic implements BeanNameAware {
 	
 	public Screwdriver getScrewdriver() {
 		return this.toolbox.getForType(ToolType.SCREWDRIVER, Screwdriver.class);
+	}
+	
+	public String getCapitalizedName() {
+		return StringUtils.capitalize(name);
 	}
 
 	/**
@@ -41,5 +46,5 @@ public class Mechanic implements BeanNameAware {
 	public void setToolbox(Toolbox toolbox) {
 		this.toolbox = toolbox;
 	}
-
+	
 }
